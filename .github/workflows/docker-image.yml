@@ -32,12 +32,12 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-          images: ${{ env.REGISTRY }}/blindfoldCode/hello-world
+          images: ${{ env.REGISTRY }}/blindfoldcode/docker-fmd2
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/blindfoldCode/hello-world:latest
+        tags: ${{ env.REGISTRY }}/blindfoldcode/docker-fmd2:latest
         labels: ${{ steps.meta.outputs.labels }}
