@@ -1,4 +1,4 @@
-I no longer use this, so this is now archived, slightly more modern then the Original from Banh
+Fork of docker-FMD2 from **impishlucy** which is a fork from **banhcanh**
 
 ## Descriptions
 
@@ -6,7 +6,6 @@ Dockerized FMD2 (Windows with Wine) using VNC, noVNC and webSocketify to display
 
 Websites protected with Cloudflare do not work with this, FlareSolverr doesnt work with wine.
 
-https://hub.docker.com/r/sillysuki/fmd2
 
 Make sure to configure it using the 'web' ui.
 
@@ -36,6 +35,13 @@ services:
       - ./manga:/downloads
     restart: unless-stopped
 ```
+
+## Acknowledgements
+- Original FMD team
+- dazedcat19 - for FMD2
+- banhcanh - for the dockerized version
+- impishlucy - for continuing support
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

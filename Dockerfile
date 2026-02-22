@@ -8,14 +8,20 @@ LABEL \
 ENV \
   WINEDLLOVERRIDES="mscoree,mshtml=" \
   WINEDEBUG="-all"\
-  HOME=/config
+  HOME=/config \
+  THRESHOLD_MINUTES=3 \
+  TRANSFER_FILE_TYPE=.cbz
 
 # Install FMD2
 RUN \
   apt update && \
   apt install -y dpkg && \
   dpkg --add-architecture i386 && \
-  apt install -y wine64 wget p7zip-full curl git python3-pyxdg inotify-tools rsync openbox &&\
+  apt install -y wget p7zip-full curl git python3-pyxdg inotify-tools rsync openbox &&\
+  mkdir -pm755 /etc/apt/keyrings && \
+  wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key - && \
+  wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources && \
+  apt install -y --install-recommends wine-stable && \
   curl -s https://api.github.com/repos/dazedcat19/FMD2/releases/tags/${FMD2_VERSION} | grep "browser_download_url.*download.*fmd.*x86_64.*.7z" | cut -d : -f 2,3 | tr -d '"' | wget -qi - -O FMD2.7z && \
   7z x FMD2.7z -o/app/FMD2 && \
   rm FMD2.7z && \
@@ -23,9 +29,8 @@ RUN \
   mkdir /downloads && \
   mkdir -p /app/FMD2/userdata && \
   mkdir -p /app/FMD2/downloads \
-
-# Copy my settings preset
-COPY settings.json root /
+  # Copy my settings preset
+  COPY settings.json root /
 ADD root /
 
 
