@@ -30,7 +30,7 @@ RUN \
   mkdir -p /app/FMD2/userdata && \
   mkdir -p /app/FMD2/downloads \
   # Copy my settings preset
-  COPY settings.json root /
+COPY settings.json root /
 ADD root /
 
 
