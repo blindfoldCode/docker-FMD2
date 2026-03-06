@@ -35,6 +35,50 @@ services:
       - ./manga:/downloads
     restart: unless-stopped
 ```
+### With FlareSolverr
+```yaml
+  fmd2:
+    image: sillysuki/fmd2:latest
+    container_name: fmd2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - UMASK=002
+      - THRESHOLD_MINUTES=3
+      - TRANSFER_FILE_TYPE=.cbz
+    ports:
+      - 3000:3000
+    volumes:
+      - ./fmd2:/app/FMD2/userdata
+      - ./manga:/downloads
+      - ./lua:/app/FMD2/lua
+    restart: unless-stopped
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=debug
+      - LOG_HTML=true
+      - TZ=Europe/Berlin
+    ports:
+      - 8191:8191
+    restart: unless-stopped
+```
+and update `lua/websitebypass/websitebypass_config.json`
+```yaml
+{
+        "use_webdriver": true,
+        "debug": false,
+        "flaresolverr_port": 8191,
+        "testing": false,
+        "flaresolverr_ip": "flaresolverr"
+}
+```
+
+
+
 
 ## Acknowledgements
 - Original FMD team

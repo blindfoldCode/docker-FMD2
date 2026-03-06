@@ -3,7 +3,7 @@ FROM ghcr.io/linuxserver/baseimage-kasmvnc:ubuntunoble
 ARG FMD2_VERSION="2.0.34.5"
 
 LABEL \
-  maintainer="mail@suki.buzz"
+  maintainer="https://github.com/blindfoldCode"
 
 ENV \
   WINEDLLOVERRIDES="mscoree,mshtml=" \
@@ -28,7 +28,7 @@ RUN \
   apt autoremove -y p7zip-full wget curl --purge && \
   mkdir /downloads && \
   mkdir -p /app/FMD2/userdata && \
-  mkdir -p /app/FMD2/downloads \
+  mkdir -p /app/FMD2/downloads
   # Copy my settings preset
 COPY settings.json root /
 ADD root /
