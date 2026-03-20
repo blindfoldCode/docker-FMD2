@@ -35,7 +35,7 @@ services:
       - ./manga:/downloads
     restart: unless-stopped
 ```
-### With FlareSolverr
+### With FlareSolverr *BETA*
 ```yaml
   fmd2:
     image: sillysuki/fmd2:latest

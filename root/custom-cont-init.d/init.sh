@@ -12,5 +12,6 @@ chown abc:abc /app -R
 chown abc:abc /config -R
 chown abc:abc /app/FMD2/lua -R
 chown abc:abc /downloads -R
+chown abc:abc /wine -R
+chown abc:abc /tmp/wine-FB4NvD -R
 chmod +x /usr/local/bin/sync_dir
-cd /app/FMD2/lua/websitebypass/
